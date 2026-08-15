@@ -1,8 +1,6 @@
 "use client";
 
-import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
-
-type ContactStatus = "idle" | "sending" | "sent" | "error";
+import { useEffect, useRef, useState } from "react";
 
 const PROJECTS = [
   {
@@ -122,9 +120,9 @@ function Nav() {
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
       <nav className="nav-shell" aria-label="Primary navigation">
-        <a className="wordmark" href="#top" onClick={close} aria-label="Dilakshan M. — home">
-          <span className="wordmark-dot">D</span>
-          <span>Dilakshan M.</span>
+        <a className="wordmark" href="#top" onClick={close} aria-label="Dilaxn — home">
+          <span className="wordmark-dot">DX</span>
+          <span>Dilaxn</span>
         </a>
 
         <button
@@ -140,9 +138,9 @@ function Nav() {
         <div id="site-menu" className={`nav-links ${open ? "is-open" : ""}`}>
           <a href="#about" onClick={close}>About</a>
           <a href="#work" onClick={close}>Work</a>
-          <a href="#contact" onClick={close}>Contact</a>
-          <a className="nav-cta" href="https://www.linkedin.com/in/dilaxn/" target="_blank" rel="noreferrer">
-            LinkedIn <span aria-hidden="true">↗</span>
+          <a href="#signals" onClick={close}>Signals</a>
+          <a className="nav-cta" href="https://github.com/Dilaxn" target="_blank" rel="noreferrer">
+            GitHub <span aria-hidden="true">↗</span>
           </a>
         </div>
       </nav>
@@ -160,7 +158,7 @@ function Hero() {
         <div className="hero-inner">
           <div className="availability-pill">
             <span className="availability-dot" />
-            Building reliable products from Colombo
+            Personal lab · quietly shipping
           </div>
 
           <h1>
@@ -169,16 +167,16 @@ function Hero() {
           </h1>
 
           <p className="hero-copy">
-            I’m Dilakshan, a software engineer turning complex financial and product systems into fast,
-            resilient experiences that feel beautifully simple.
+            I’m Dilaxn—a software engineer by profession and a curious product builder by nature.
+            This is where systems thinking, quiet interfaces, and useful experiments meet.
           </p>
 
           <div className="hero-actions">
             <a className="button button-dark" href="#work">
               Explore my work <span aria-hidden="true">↓</span>
             </a>
-            <a className="button button-quiet" href="#contact">
-              Start a conversation
+            <a className="button button-quiet" href="#about">
+              How I build
             </a>
           </div>
 
@@ -195,23 +193,23 @@ function Hero() {
               <strong>Healthy</strong>
             </div>
             <div className="core-mark">
-              <span>DM</span>
-              <small>ENGINEERING</small>
+              <span>DX</span>
+              <small>PERSONAL LAB</small>
             </div>
           </div>
 
-          <div className="hero-facts" aria-label="Career highlights">
+          <div className="hero-facts" aria-label="What this portfolio explores">
             <div>
-              <strong>4+</strong>
-              <span>Years building production software</span>
+              <strong>Systems</strong>
+              <span>Reliable foundations with clear boundaries</span>
             </div>
             <div>
-              <strong>3</strong>
-              <span>Industries: fintech, aviation, AI/ML</span>
+              <strong>Products</strong>
+              <span>Small ideas shaped into useful software</span>
             </div>
             <div>
-              <strong>12</strong>
-              <span>Core technologies in daily rotation</span>
+              <strong>Signals</strong>
+              <span>Learning, observing, and sharing the process</span>
             </div>
           </div>
         </div>
@@ -219,6 +217,7 @@ function Hero() {
 
       <About />
       <Work />
+      <LabSignals />
       <OpenSource />
       <Contact />
     </main>
@@ -309,8 +308,8 @@ function Work() {
         </div>
 
         <div className="work-heading">
-          <h2>Products made to be used, not just admired.</h2>
-          <p>Six independent products, each shaped around a real problem and built end to end.</p>
+          <h2>Products made to solve, learn, and explore.</h2>
+          <p>Six personal experiments, each shaped around a real problem and built end to end.</p>
         </div>
 
         <div className="project-grid">
@@ -343,6 +342,48 @@ function Work() {
   );
 }
 
+function LabSignals() {
+  const ref = useReveal();
+
+  return (
+    <section id="signals" className="lab-signals reveal-section" ref={ref}>
+      <div className="signal-marquee" aria-hidden="true">
+        <div>
+          <span>BUILD QUIETLY</span><i>✦</i><span>THINK IN SYSTEMS</span><i>✦</i><span>SHIP THE SMALL THING</span><i>✦</i>
+          <span>BUILD QUIETLY</span><i>✦</i><span>THINK IN SYSTEMS</span><i>✦</i><span>SHIP THE SMALL THING</span><i>✦</i>
+        </div>
+      </div>
+      <div className="section-shell">
+        <div className="section-kicker">
+          <span>03</span>
+          <p>Signals from the lab</p>
+        </div>
+        <div className="lab-heading">
+          <h2>What’s on my workbench.</h2>
+          <p>No roadmap theatre. Just a few ideas I keep returning to.</p>
+        </div>
+        <div className="lab-grid">
+          <article className="lab-card lab-card-blue">
+            <p>01 / SYSTEMS</p>
+            <h3>Software that explains itself.</h3>
+            <span>Observable by design</span>
+          </article>
+          <article className="lab-card lab-card-lime">
+            <p>02 / PRODUCTS</p>
+            <h3>Tiny tools with outsized utility.</h3>
+            <span>Less surface. More leverage.</span>
+          </article>
+          <article className="lab-card lab-card-black">
+            <p>03 / INTERFACES</p>
+            <h3>Calm software for noisy days.</h3>
+            <span>Clarity is a feature</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function OpenSource() {
   const ref = useReveal();
 
@@ -367,65 +408,29 @@ function OpenSource() {
 
 function Contact() {
   const ref = useReveal();
-  const [status, setStatus] = useState<ContactStatus>("idle");
-
-  const handleSubmit = useCallback(async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setStatus("sending");
-    const form = event.currentTarget;
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(form))),
-      });
-      if (!response.ok) throw new Error("Unable to send message");
-      form.reset();
-      setStatus("sent");
-    } catch {
-      setStatus("error");
-    }
-  }, []);
 
   return (
     <section id="contact" className="contact reveal-section" ref={ref}>
       <div className="section-shell">
-        <div className="contact-panel">
+        <div className="contact-panel contact-panel-simple">
           <div className="contact-intro">
-            <p className="mono-label">HAVE A GOOD PROBLEM?</p>
-            <h2>Let’s build something that matters.</h2>
+            <p className="mono-label">END OF TRANSMISSION</p>
+            <h2>No pitch. Just a signal.</h2>
             <p>
-              I’m always open to thoughtful conversations about software, systems, and ambitious product ideas.
+              This is a personal engineering lab—not a consultancy. If the work resonates, follow the experiments
+              on GitHub or send a simple hello.
             </p>
             <div className="contact-links">
-              <a href="mailto:dilaxn@gmail.com">Email</a>
-              <a href="https://www.linkedin.com/in/dilaxn/" target="_blank" rel="noreferrer">LinkedIn</a>
-              <a href="https://github.com/Dilaxn" target="_blank" rel="noreferrer">GitHub</a>
+              <a className="contact-primary" href="https://github.com/Dilaxn" target="_blank" rel="noreferrer">
+                Explore GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <a href="mailto:dilaxn@gmail.com">Send a note</a>
             </div>
           </div>
-
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <label>
-              <span>Your name</span>
-              <input name="name" type="text" autoComplete="name" placeholder="Jane Smith" required />
-            </label>
-            <label>
-              <span>Email address</span>
-              <input name="email" type="email" autoComplete="email" placeholder="jane@company.com" required />
-            </label>
-            <label>
-              <span>What are you thinking about?</span>
-              <textarea name="message" rows={4} placeholder="Tell me a little about your idea…" required />
-            </label>
-            <button className="form-submit" type="submit" disabled={status === "sending"}>
-              {status === "sending" ? "Sending…" : status === "sent" ? "Message sent" : status === "error" ? "Try again" : "Send message"}
-              <span aria-hidden="true">→</span>
-            </button>
-            <p className="form-status" aria-live="polite">
-              {status === "sent" ? "Thanks — I’ll get back to you soon." : status === "error" ? "Something went wrong. You can email me directly instead." : ""}
-            </p>
-          </form>
+          <div className="contact-glyph" aria-hidden="true">
+            <span>D</span>
+            <span>X</span>
+          </div>
         </div>
       </div>
     </section>
@@ -437,8 +442,8 @@ function Footer() {
     <footer>
       <div className="footer-inner">
         <div>
-          <strong>Dilakshan M.</strong>
-          <span>Software Engineer</span>
+          <strong>Dilaxn</strong>
+          <span>Personal engineering lab</span>
         </div>
         <p>Designed with care. Engineered for speed.</p>
         <p>© {new Date().getFullYear()}</p>

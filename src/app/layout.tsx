@@ -3,30 +3,30 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dilax.space"),
-  title: "Dilakshan M. — Software Engineer",
+  title: "Dilaxn — Software Engineer & Product Explorer",
   description:
-    "Software engineer building reliable financial systems and thoughtful digital products with Java, Spring Boot, and modern web technologies.",
+    "A personal engineering lab exploring reliable systems, thoughtful products, and calm digital experiences.",
   openGraph: {
-    title: "Dilakshan M. — Software Engineer",
+    title: "Dilaxn — Software Engineer & Product Explorer",
     description:
-      "I turn complex systems into fast, resilient experiences that feel beautifully simple.",
+      "A personal lab for complex systems, quiet interfaces, and useful experiments.",
     url: "https://dilax.space",
-    siteName: "Dilakshan M.",
+    siteName: "Dilaxn",
     type: "website",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Dilakshan M. — Software Engineer",
+        alt: "Dilaxn — Software Engineer and Product Explorer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dilakshan M. — Software Engineer",
+    title: "Dilaxn — Software Engineer & Product Explorer",
     description:
-      "I turn complex systems into fast, resilient experiences that feel beautifully simple.",
+      "A personal lab for complex systems, quiet interfaces, and useful experiments.",
     images: ["/og.png"],
   },
 };
